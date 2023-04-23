@@ -8,7 +8,8 @@ describe('Czechitas Login Page', async () => {
 
         await browser.reloadSession();
 
-        await browser.url('/prihlaseni');
+        await browser.url('/prihlaseni'); // .url=odnavigujeme se na baseUrl definovoun v wdio.conf.js, ('/prihlaseni')= konkretne na sekci prohlaseni. Neni-li definovana baseUrl, musime 
+                                          //     celou  url zadat.
 
         await browser.pause(5000);
 
