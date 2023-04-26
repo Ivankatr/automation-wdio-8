@@ -2,12 +2,12 @@ describe('Homework', async () => {
 
     it('should open page and create screenshot', async () => {
 
-        await browser.url('/kontakt');
+        await browser.url('/registrace');
 
-        await browser.saveScreenshot ('homework screenshot.png');
+        await browser.saveScreenshot ('homework screenshot Registrace.png');
 
-        console.log("mas hotovy screenshot");
-           // sem vypracuj domácí úkol
+        console.log("mas hotovy screenshot Ivi");
+           // sem vypracuj domácí úkol-hotovo
 
     });
 
