@@ -7,7 +7,7 @@ describe('Homework', async () => {
         await browser.saveScreenshot ('homework screenshot.png');
 
         console.log("mas hotovy screenshot");
-           // sem vypracuj domácí úkol
+          // sem vypracuj domácí úkol
 
     });
 
