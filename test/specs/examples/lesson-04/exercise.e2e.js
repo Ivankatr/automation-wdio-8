@@ -12,15 +12,15 @@ describe('Login Page', async () => {
 
     it('should show login form', async () => {
         const emailField = $('#email');
-        console.log('Email field is dislayed: ' + await emailField.isDisplayed());
-        console.log('Email field is dislayed: ' + await emailField.isEnabled());
+        console.log('Email field is displayed: ' + await emailField.isDisplayed());
+        console.log('Email field is displayed: ' + await emailField.isEnabled());
 
         const passwordField = $('#password');
-        console.log('Password field is dislayed: ' + await passwordField.isDisplayed());
-        console.log('Password field is dislayed: ' + await passwordField.isEnabled());
+        console.log('Password field is displayed: ' + await passwordField.isDisplayed());
+        console.log('Password field is displayed: ' + await passwordField.isEnabled());
 
         const loginButton = $('.btn-primary');
-        console.log('Login button is dislayed: ' + await loginButton.isDisplayed());
+        console.log('Login button is displayed: ' + await loginButton.isDisplayed());
         console.log('Login button text is: ' + await loginButton.getText());
     });
 
@@ -33,7 +33,7 @@ describe('Login Page', async () => {
         await passwordField.setValue(password);
         await loginButton.click();
 
-        const userNameDropdown = $('.navbar-right').$('[data-toggle="dropdown"]');
+        const userNameDropdown = $('.navbar-right').$('[data-toggle="dropdown"]'); // vpravo nahore prihlasen user- Admin Lisak
         console.log('User currently logged in: ' + await userNameDropdown.getText());
     });
 
@@ -47,10 +47,10 @@ describe('Login Page', async () => {
         await passwordField.setValue('invalid');
         await loginButton.click();
 
-        const toastMessage = $('.toast-message');
+        const toastMessage = $('.toast-message');         // kontrolujeme error message
         console.log('Error: ' + await toastMessage.getText());
 
-        const fieldError = $('.invalid-feedback');
+        const fieldError = $('.invalid-feedback');          // kontrolujeme error message
         console.log('Field error: ' + await fieldError.getText());
 
         console.log('Email field is dislayed: ' + await emailField.isDisplayed());
@@ -76,14 +76,14 @@ describe('Login Page', async () => {
         await logoutLink.click();
 
         console.log('User is logged in: ' + await userNameDropdown.isDisplayed());
-        console.log('Navbar text: ' + await navbarRight.getText());
+        console.log('Navbar text: ' + await navbarRight.getText());           // opet kontrola praveho horniho rohu - ze uz tam nevidim prihlaseneho user Admin Lisak
     });
 });
 
 describe('Applications Page', async () => {
 
     beforeEach(async () => {
-        await browser.reloadSession();
+        await browser.reloadSession();                     // sada spolecnych akci pro 2 nasledujici It
         await browser.url('/prihlaseni');
         await $('#email').setValue(username);
         await $('#password').setValue(password);
@@ -92,7 +92,7 @@ describe('Applications Page', async () => {
         await browser.pause(1000);
     });
 
-    it('should list all applications', async () => {
+    it('should list all applications', async () => {         //overeni nacteni vychoziho stavu
         console.log('Page title is: ' + await $('h1').getText());
 
         const rows = await $('.dataTable').$('tbody').$$('tr');
@@ -103,13 +103,13 @@ describe('Applications Page', async () => {
         }
     });
 
-    it('should filter in applications', async () => {
+    it('should filter in applications', async () => {               // do vyhledavaciho okna se zada text a overime, ze filtruje spravne
         const searchInput = $('input[type="search"]');
         const loading = $('#DataTables_Table_0_processing');
         const searchText = 'mar';
-
-        await searchInput.setValue(searchText);
-        await loading.waitForDisplayed({ reverse: true});
+   
+        await searchInput.setValue(searchText);                
+        await loading.waitForDisplayed({ reverse: true});  
         await browser.pause(1000);
 
         const filteredRows = await $('.dataTable').$('tbody').$$('tr')
