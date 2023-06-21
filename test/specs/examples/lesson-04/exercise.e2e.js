@@ -107,9 +107,9 @@ describe('Applications Page', async () => {
         const searchInput = $('input[type="search"]');
         const loading = $('#DataTables_Table_0_processing');
         const searchText = 'mar';
-   
-        await searchInput.setValue(searchText);                
-        await loading.waitForDisplayed({ reverse: true});  
+
+        await searchInput.setValue(searchText);
+        await loading.waitForDisplayed({ reverse: true});
         await browser.pause(1000);
 
         const filteredRows = await $('.dataTable').$('tbody').$$('tr')
